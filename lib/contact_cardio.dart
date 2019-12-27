@@ -22,6 +22,7 @@ export 'src/formats/email_address/email_address_contact_card.dart';
 export 'src/formats/email_address/raw_email_address_contact_card.dart';
 export 'src/formats/email_address/single_email_address_contact_card.dart';
 export 'src/formats/email_address/uri_email_address_contact_card.dart';
+export 'src/formats/me_card/me_card_contact_card.dart';
 export 'src/formats/phone_number/phone_number_contact_card.dart';
 export 'src/formats/phone_number/raw_phone_number_contact_card.dart';
 export 'src/formats/phone_number/single_phone_number_contact_card.dart';

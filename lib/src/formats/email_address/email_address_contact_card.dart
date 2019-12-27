@@ -1,5 +1,6 @@
 import '../../contact_card.dart';
 import '../../contact_card_deserializer.dart';
+import '../me_card/me_card_contact_card.dart';
 import 'only_email_address_contact_card.dart';
 
 /// A [ContactCard] representing contact information related to email.
@@ -8,6 +9,7 @@ abstract class EmailAddressContactCard extends ContactCard {
       _deserializer =
       chainContactCardDeserializerList([
         OnlyEmailAddressContactCard.deserialize,
+        MeCardContactCard.deserialize,
       ]);
 
   /// Returns an instance of [EmailAddressContactCard] if the given `String`
