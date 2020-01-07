@@ -1,6 +1,7 @@
 import 'contact_card_deserializer.dart';
 import 'formats/email_address/only_email_address_contact_card.dart';
 import 'formats/me_card/me_card_contact_card.dart';
+import 'formats/v_card/v_card_contact_card.dart';
 import 'formats/phone_number/only_phone_number_contact_card.dart';
 
 /// Parent class for a unit of `String`-representable contact information.
@@ -24,7 +25,8 @@ abstract class ContactCard {
   static final List<ContactCardDeserializer> _contactCardDeserializerList = [
     OnlyPhoneNumberContactCard.deserialize,
     OnlyEmailAddressContactCard.deserialize,
-    MeCardContactCard.deserialize
+    MeCardContactCard.deserialize,
+    VCardContactCard.deserialize,
   ];
 
   static final ContactCardDeserializer<ContactCard> _deserializer =

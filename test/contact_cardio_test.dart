@@ -86,9 +86,54 @@ void main() {
           )
           .toList();
 
+  const validVCardList = <String> [
+    'BEGIN:VCARD\r\n'
+    'VERSION:3.0\r\n'
+    'FN:Faye Valentine\r\n'
+    'N:Valentine;Faye\r\n'
+    'NOTE: The real folk blues...  \r\n'
+    ' You\'re gonna carry that weight.\r\n'
+    'END:VCARD\r\n',
+
+    'BEGIN:VCARD\r\n'
+    'VERSION:3.0\r\n'
+    'FN:Spike Spiegel\r\n'
+    'N:Spiegel;Spike\r\n'
+    'END:VCARD\r\n',
+
+    'BEGIN:VCARD\r\n'
+    'VERSION:3.0\r\n'
+    'FN:Jet Black\r\n'
+    'N:Black;Jet\r\n'
+    'END:VCARD\r\n',
+
+    'BEGIN:VCARD\r\n'
+    'VERSION:3.0\r\n'
+    'FN:Spike Spiegel\r\n'
+    'N:Spiegel;Spike\r\n'
+    'END:VCARD\r\n'
+    '\r\n'
+    '\r\n'
+    'BEGIN:VCARD\r\n'
+    'VERSION:3.0\r\n'
+    'FN:Jet Black\r\n'
+    'N:Black;Jet\r\n'
+    'END:VCARD\r\n',
+  ];
+  deserializationTestCaseList +=
+      validVCardList
+          .map((s) =>
+              DeserializationTestCase(
+                  s,
+                  TypeToken<VCardContactCard>()
+              )
+          )
+          .toList();
+
   const invalidContactList = <String>[
     'This is not a valid contact',
     'herp derp',
+    'BEGIN:VCARD\r\nVERSION:3.0\r\nFN:No End\r\nN:End;No\r\n',
   ];
 
   void testDeserializer<T extends ContactCard>(
@@ -158,6 +203,10 @@ void main() {
 
     test('PhoneNumberContactCard', () =>
         testDeserializer(PhoneNumberContactCard.deserialize)
+    );
+
+    test('VCardContactCard', () =>
+        testDeserializer(VCardContactCard.deserialize)
     );
 
     test('ContactCard', () =>

@@ -27,3 +27,7 @@ export 'src/formats/phone_number/phone_number_contact_card.dart';
 export 'src/formats/phone_number/raw_phone_number_contact_card.dart';
 export 'src/formats/phone_number/single_phone_number_contact_card.dart';
 export 'src/formats/phone_number/uri_phone_number_contact_card.dart';
+export 'src/formats/v_card/v_card.dart';
+export 'src/formats/v_card/v_card_3_0.dart';
+export 'src/formats/v_card/v_card_contact_card.dart';
+export 'src/formats/v_card/v_card_enums.dart';
