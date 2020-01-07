@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:contact_cardio/contact_cardio.dart';
 import 'package:test/test.dart';
 
