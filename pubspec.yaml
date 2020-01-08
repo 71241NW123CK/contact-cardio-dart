@@ -5,7 +5,7 @@ description: A package for reading and writing various contact information forma
 homepage: https://github.com/71241NW123CK/contact-cardio-dart
 
 environment:
-  sdk: '>=2.2.0 < 3.0.0'
+  sdk: '>=2.2.0 <3.0.0'
 
 dev_dependencies:
   build_runner: '>=1.7.0 <2.0.0'
