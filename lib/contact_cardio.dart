@@ -5,7 +5,7 @@
 /// method [ContactCard.deserialize] as such:
 ///
 /// ```
-/// import 'package:contact_cardio/contact_card.dart';
+/// import 'package:contact_cardio/contact_cardio.dart';
 ///
 /// ...
 /// String s = ...
