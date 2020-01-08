@@ -34,7 +34,7 @@ class UriPhoneNumberContactCard extends SinglePhoneNumberContactCard
     }
   }
 
-  String _phoneNumber;
+  final String _phoneNumber;
 
   String get phoneNumber => _phoneNumber;
 

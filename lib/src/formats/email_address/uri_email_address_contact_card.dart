@@ -36,7 +36,7 @@ class UriEmailAddressContactCard extends EmailAddressContactCard
     }
   }
 
-  List<String> _recipientList;
+  final List<String> _recipientList;
 
   List<String> get emailAddressList => _recipientList;
 

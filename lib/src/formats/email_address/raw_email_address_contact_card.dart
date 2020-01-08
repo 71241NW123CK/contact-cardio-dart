@@ -16,7 +16,7 @@ class RawEmailAddressContactCard extends SingleEmailAddressContactCard
     }
   }
 
-  String _value;
+  final String _value;
 
   String get emailAddress => _value;
 
