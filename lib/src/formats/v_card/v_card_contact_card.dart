@@ -22,7 +22,7 @@ class VCardContactCard extends ContactCard
   /// a vCard entity; otherwise returns `null`.
   static VCardContactCard deserialize(String serializedContactCard) {
     final lines = serializedContactCard.split(VCardUtilities.crlf);
-    List<int> beginLineIndices = [];
+    var beginLineIndices = <int>[];
     for (var i = 0; i < lines.length; i++) {
       if (lines[i].toUpperCase() == VCardEnumUtilities.beginVCard) {
         beginLineIndices.add(i);
@@ -31,8 +31,8 @@ class VCardContactCard extends ContactCard
     if (beginLineIndices.isEmpty || beginLineIndices.first != 0) { // vCard entities must begin with a vCard, which must begin with a `BEGIN:VCARD` followed by a CRLF.
       return null;
     }
-    List<int> endIndices = beginLineIndices.sublist(1) + [lines.length];
-    List<VCard> vCardList = [];
+    var endIndices = beginLineIndices.sublist(1) + [lines.length];
+    var vCardList = <VCard>[];
     for (var i = 0; i < beginLineIndices.length; i++) {
       final beginIndex = beginLineIndices[i];
       final endIndex = endIndices[i];
@@ -53,7 +53,7 @@ class VCardContactCard extends ContactCard
     return VCardContactCard._(vCardList);
   }
 
-  List<VCard> _vCardList;
+  final List<VCard> _vCardList;
 
   VCardContactCard._(this._vCardList);
 

@@ -6,7 +6,6 @@ class VCardUtilities {
 
   static const lineWrapSpace = '\r\n ';
   static const lineWrapTab = '\r\n\t';
-
 }
 
 class VCardIanaBoundedParamValue extends IVCardIanaBoundedParamValue {
@@ -15,7 +14,7 @@ class VCardIanaBoundedParamValue extends IVCardIanaBoundedParamValue {
     return value == null ? null : VCardIanaBoundedParamValue._(value);
   }
 
-  VCardIanaParamValue _value;
+  final VCardIanaParamValue _value;
 
   VCardIanaBoundedParamValue._(this._value);
 
@@ -28,7 +27,7 @@ class VCardIanaUnboundedParamValue extends IVCardIanaUnboundedParamValue {
     return value == null ? null : VCardIanaUnboundedParamValue._(value);
   }
 
-  String _value;
+  final String _value;
 
   VCardIanaUnboundedParamValue._(this._value);
 
@@ -48,8 +47,8 @@ class VCardIanaParam extends IVCardIanaParam {
     return VCardIanaParam._(paramName, paramValueList);
   }
 
-  VCardIanaParamName _paramName;
-  List<AbstractVCardIanaParamValue> _paramValueList;
+  final VCardIanaParamName _paramName;
+  final List<AbstractVCardIanaParamValue> _paramValueList;
 
   VCardIanaParam._(this._paramName, this._paramValueList);
 
@@ -71,8 +70,8 @@ class VCardXParam extends IVCardXParam {
     return VCardXParam._(paramName, paramValueList);
   }
 
-  String _paramName;
-  List<String> _paramValueList;
+  final String _paramName;
+  final List<String> _paramValueList;
 
   VCardXParam._(this._paramName, this._paramValueList);
 
@@ -92,9 +91,9 @@ class VCardLabeledValue<T> extends IVCardLabeledValue<T> {
     return VCardLabeledValue._(group, vCardParamList ?? [], value);
   }
 
-  String _group;
-  List<AbstractVCardParam> _vCardParamList;
-  T _value;
+  final String _group;
+  final List<AbstractVCardParam> _vCardParamList;
+  final T _value;
 
   VCardLabeledValue._(
       this._group,
@@ -126,10 +125,10 @@ class VCardExtendedLabeledValue extends IVCardExtendedLabeledValue {
     );
   }
 
-  String _group;
-  String _propertyKey;
-  List<IVCardXParam> _vCardParamList;
-  String _value;
+  final String _group;
+  final String _propertyKey;
+  final List<IVCardXParam> _vCardParamList;
+  final String _value;
 
   VCardExtendedLabeledValue._(
       this._group,
@@ -150,12 +149,12 @@ class VCardAddress extends IVCardAddress {
   static VCardAddress vCardAddress(
       String poBox,
       [
-        String extendedAddress = null,
-        String street = null,
-        String locality = null,
-        String region = null,
-        String postalCode = null,
-        String countryName = null,
+        String extendedAddress,
+        String street,
+        String locality,
+        String region,
+        String postalCode,
+        String countryName,
       ]
       ) {
     return VCardAddress._(
@@ -169,6 +168,14 @@ class VCardAddress extends IVCardAddress {
     );
   }
 
+  final String _poBox;
+  final String _extendedAddress;
+  final String _street;
+  final String _locality;
+  final String _region;
+  final String _postalCode;
+  final String _countryName;
+
   VCardAddress._(
       this._poBox,
       this._extendedAddress,
@@ -178,14 +185,6 @@ class VCardAddress extends IVCardAddress {
       this._postalCode,
       this._countryName
       );
-
-  String _poBox;
-  String _extendedAddress;
-  String _street;
-  String _locality;
-  String _region;
-  String _postalCode;
-  String _countryName;
 
   String get poBox => _poBox;
   String get extendedAddress => _extendedAddress;
@@ -210,8 +209,8 @@ class VCardLatLng extends IVCardLatLng {
     return VCardLatLng._(latitude.trim(), longitude.trim());
   }
 
-  String _latitude;
-  String _longitude;
+  final String _latitude;
+  final String _longitude;
 
   VCardLatLng._(this._latitude, this._longitude);
 
@@ -223,10 +222,10 @@ class VCardName extends IVCardName {
   static VCardName vCardName(
       List<String> familyNames,
       [
-        List<String> givenNames = null,
-        List<String> middleNames = null,
-        List<String> prefixes = null,
-        List<String> suffixes = null,
+        List<String> givenNames,
+        List<String> middleNames,
+        List<String> prefixes,
+        List<String> suffixes,
       ]
       ) {
     if (familyNames == null || familyNames.isEmpty) {
@@ -241,11 +240,11 @@ class VCardName extends IVCardName {
     );
   }
 
-  List<String> _familyNames;
-  List<String> _givenNames;
-  List<String> _middleNames;
-  List<String> _prefixes;
-  List<String> _suffixes;
+  final List<String> _familyNames;
+  final List<String> _givenNames;
+  final List<String> _middleNames;
+  final List<String> _prefixes;
+  final List<String> _suffixes;
 
   VCardName._(
       this._familyNames, // non null, at least one long
@@ -278,8 +277,8 @@ class VCardOrganization extends IVCardOrganization {
     return VCardOrganization._(name, organizationalUnits ?? []);
   }
 
-  String _name;
-  List<String> _organizationUnits;
+  final String _name;
+  final List<String> _organizationUnits;
 
   VCardOrganization._(this._name, this._organizationUnits);
 

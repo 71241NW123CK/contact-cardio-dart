@@ -32,7 +32,7 @@ class VCard3_0 extends VCard {
       return null;
     }
     // vCard 3.0 must end with 'END:VCARD' followed by at least one CRLF
-    while (contentLines.length > 0 && contentLines.last.isEmpty) {
+    while (contentLines.isNotEmpty && contentLines.last.isEmpty) {
       contentLines.removeLast();
     }
     if (contentLines.last.toUpperCase() != VCardEnumUtilities.endVCard) {
@@ -46,7 +46,7 @@ class VCard3_0 extends VCard {
     }
     // vCard 3.0 must have at least one VERSION line with value '3.0', and may
     // not contain any VERSION lines with a value other than '3.0'.
-    bool hasVersion = false;
+    var hasVersion = false;
     final versionPropertyKey =
         VCardEnumUtilities
             .stringForVCardIanaPropertyKey(VCardIanaPropertyKey.version);
@@ -58,7 +58,7 @@ class VCard3_0 extends VCard {
         hasVersion = true;
       } else {
         final components = contentLine.split(':');
-        if (components == 2
+        if (components.length == 2
             && components.first == versionPropertyKey
             && components[1] != v3_0Key) {
           return null;
@@ -68,31 +68,31 @@ class VCard3_0 extends VCard {
     if (!hasVersion) {
       return null;
     }
-    List<IVCardLabeledValue<String>> labeledFormattedNameList = [];
-    List<IVCardLabeledValue<IVCardName>> labeledNameList = [];
-    List<IVCardLabeledValue<List<String>>> labeledNicknameList = [];
-    List<IVCardLabeledValue<String>> labeledPhotoList = [];
-    String birthday = null;
-    List<IVCardLabeledValue<IVCardAddress>> labeledAddressList = [];
-    List<IVCardLabeledValue<String>> labeledPhoneNumberList = [];
-    List<IVCardLabeledValue<String>> labeledEmailAddressList = [];
-    List<IVCardLabeledValue<String>> labeledTimeZoneList = [];
-    List<IVCardLabeledValue<IVCardLatLng>> labeledGeographicLocationList = [];
-    List<IVCardLabeledValue<String>> labeledTitleList = [];
-    List<IVCardLabeledValue<String>> labeledRoleList = [];
-    List<IVCardLabeledValue<String>> labeledLogoList = [];
-    List<IVCardLabeledValue<IVCardOrganization>> labeledOrganizationList = [];
-    List<IVCardLabeledValue<List<String>>> labeledCategoriesList = [];
-    List<IVCardLabeledValue<String>> labeledNoteList = [];
-    String prodId = null;
-    IVCardLabeledValue<String> labeledRevisionTime = null;
-    List<String> uriList = [];
-    List<IVCardExtendedLabeledValue> extendedLabeledValueList = [];
-    List<IVCardLabeledValue<String>> labeledLabelList = [];
-    List<IVCardLabeledValue<String>> labeledSortStringList = [];
+    var labeledFormattedNameList = <IVCardLabeledValue<String>>[];
+    var labeledNameList = <IVCardLabeledValue<IVCardName>>[];
+    var labeledNicknameList = <IVCardLabeledValue<List<String>>>[];
+    var labeledPhotoList = <IVCardLabeledValue<String>>[];
+    String birthday;
+    var labeledAddressList = <IVCardLabeledValue<IVCardAddress>>[];
+    var labeledPhoneNumberList = <IVCardLabeledValue<String>>[];
+    var labeledEmailAddressList = <IVCardLabeledValue<String>>[];
+    var labeledTimeZoneList = <IVCardLabeledValue<String>>[];
+    var labeledGeographicLocationList = <IVCardLabeledValue<IVCardLatLng>>[];
+    var labeledTitleList = <IVCardLabeledValue<String>>[];
+    var labeledRoleList = <IVCardLabeledValue<String>>[];
+    var labeledLogoList = <IVCardLabeledValue<String>>[];
+    var labeledOrganizationList = <IVCardLabeledValue<IVCardOrganization>>[];
+    var labeledCategoriesList = <IVCardLabeledValue<List<String>>>[];
+    var labeledNoteList = <IVCardLabeledValue<String>>[];
+    String prodId;
+    IVCardLabeledValue<String> labeledRevisionTime;
+    var uriList = <String>[];
+    var extendedLabeledValueList = <IVCardExtendedLabeledValue>[];
+    var labeledLabelList = <IVCardLabeledValue<String>>[];
+    var labeledSortStringList = <IVCardLabeledValue<String>>[];
 
-    String group = null;
-    String propertyKeyAndParamsString = null;
+    String group;
+    String propertyKeyAndParamsString;
     for (var contentLine in contentLines) {
       final colonIndex = contentLine.indexOf(':'); // todo: backslash-escaped colons
       if (colonIndex < 1) {
@@ -353,7 +353,7 @@ class VCard3_0 extends VCard {
       VCardIanaParamValue.work,
       VCardIanaParamValue.pref,
     };
-    List<VCardIanaParamValue> typeValues = [];
+    var typeValues = <VCardIanaParamValue>[];
     final paramComponents = propertyKeyAndParams.sublist(1);
     for (var paramComponent in paramComponents) {
       final paramComponentParts = paramComponent.split('=');
@@ -439,7 +439,7 @@ class VCard3_0 extends VCard {
       VCardIanaParamValue.pref,
       VCardIanaParamValue.x400,
     };
-    List<VCardIanaParamValue> typeValues = [];
+    var typeValues = <VCardIanaParamValue>[];
     final paramComponents = propertyKeyAndParams.sublist(1);
     for (var paramComponent in paramComponents) {
       final paramComponentParts = paramComponent.split('=');
@@ -516,7 +516,7 @@ class VCard3_0 extends VCard {
       VCardIanaParamValue.work,
       VCardIanaParamValue.pref,
     };
-    List<VCardIanaParamValue> typeValues = [];
+    var typeValues = <VCardIanaParamValue>[];
     final paramComponents = propertyKeyAndParams.sublist(1);
     for (var paramComponent in paramComponents) {
       final paramComponentParts = paramComponent.split('=');
@@ -622,7 +622,7 @@ class VCard3_0 extends VCard {
       VCardIanaParamValue.date,
       VCardIanaParamValue.dateTime,
     };
-    VCardIanaParamValue valueValue = null; // sic
+    VCardIanaParamValue valueValue; // sic
     final paramComponents = propertyKeyAndParams.sublist(1);
     for (var paramComponent in paramComponents) {
       final paramComponentParts = paramComponent.split('=');
@@ -700,7 +700,7 @@ class VCard3_0 extends VCard {
       VCardIanaParamValue.textphone,
       VCardIanaParamValue.mainNumber,
     };
-    List<VCardIanaParamValue> typeValues = [];
+    var typeValues = <VCardIanaParamValue>[];
     final paramComponents = propertyKeyAndParams.sublist(1);
     for (var paramComponent in paramComponents) {
       final paramComponentParts = paramComponent.split('=');
@@ -752,7 +752,7 @@ class VCard3_0 extends VCard {
       String valueString
       ) {
     final paramComponents = propertyKeyAndParams.sublist(1);
-    List<AbstractVCardParam> paramList = [];
+    var paramList = <AbstractVCardParam>[];
     for (var paramComponent in paramComponents) {
       final paramComponentParts = paramComponent.split('=');
       if (paramComponentParts.length != 2) {
@@ -790,7 +790,7 @@ class VCard3_0 extends VCard {
       String valueString
       ) {
     final paramComponents = propertyKeyAndParams.sublist(1);
-    List<AbstractVCardParam> paramList = [];
+    var paramList = <AbstractVCardParam>[];
     for (var paramComponent in paramComponents) {
       final paramComponentParts = paramComponent.split('=');
       if (paramComponentParts.length != 2) {
@@ -857,7 +857,7 @@ class VCard3_0 extends VCard {
 
   static List<AbstractVCardParam> _buildParamList(
       List<String> paramStringList) {
-    List<AbstractVCardParam> result = [];
+    var result = <AbstractVCardParam>[];
     for (var paramString in paramStringList) { // todo: support x- params
       final paramNameAndValues = paramString.split('=');
       if (paramNameAndValues.length != 2) { // is `'='` escapable?
@@ -1079,7 +1079,7 @@ class VCard3_0 extends VCard {
       );
 
   static String _serializeName(IVCardName name) { // Little Bobby Tables breaks this
-    List<String> components = [];
+    var components = <String>[];
     final suffixes = name.suffixes;
     if (suffixes != null) {
       components.add(suffixes.join(','));
@@ -1112,7 +1112,7 @@ class VCard3_0 extends VCard {
   }
 
   static String _serializeAddress(IVCardAddress address) { // todo: convert commas to newlines per spec?
-    List<String> components = [];
+    var components = <String>[];
     final countryName = address.countryName;
     if (countryName != null) {
       components.add(countryName);
@@ -1193,7 +1193,7 @@ class VCard3_0 extends VCard {
     if (paramList == null) {
       return '';
     }
-    List<String> serializedParamList = [];
+    var serializedParamList = <String>[];
     for (var param in paramList) {
       final serializedParam = _serializeParam(param);
       if (serializedParam != null) {

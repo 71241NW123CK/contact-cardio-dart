@@ -6,7 +6,7 @@ import '../phone_number/phone_number_contact_card.dart';
 /// [page for i-mode phonebook registration](https://web.archive.org/web/20160304025131/https://www.nttdocomo.co.jp/english/service/developer/make/content/barcode/function/application/addressbook/index.html)
 class MeCardAddress {
   static MeCardAddress _deserialize(String serializedMeCardAddress) {
-    final components = serializedMeCardAddress.split(",");
+    final components = serializedMeCardAddress.split(',');
     if (components.length < 7) {
       return null;
     }
@@ -28,13 +28,13 @@ class MeCardAddress {
     );
   }
 
-  String _poBox;
-  String _roomNumber;
-  String _houseNumber;
-  String _city;
-  String _prefecture;
-  String _zipCode;
-  String _country;
+  final String _poBox;
+  final String _roomNumber;
+  final String _houseNumber;
+  final String _city;
+  final String _prefecture;
+  final String _zipCode;
+  final String _country;
 
   MeCardAddress._(
       this._poBox,
@@ -126,16 +126,16 @@ class MeCardContactCard extends ContactCard
       return null;
     }
     final innerComponents = serializedContactCard.substring(_meCardTag.length + 1, serializedContactCard.length - 1).split(';');
-    String name = null;
-    String reading = null;
-    List<String> telList = [];
-    List<String> telAvList = [];
-    List<String> emailList = [];
-    String memo = null;
-    String birthday = null;
-    List<MeCardAddress> addressList = [];
-    List<String> urlList = [];
-    String nickname = null;
+    String name;
+    String reading;
+    var telList = <String>[];
+    var telAvList = <String>[];
+    var emailList = <String>[];
+    String memo;
+    String birthday;
+    var addressList = <MeCardAddress>[];
+    var urlList = <String>[];
+    String nickname;
     for (var component in innerComponents) {
       final parts = component.split(':');
       if (parts.length == 1) {
@@ -199,16 +199,16 @@ class MeCardContactCard extends ContactCard
     );
   }
 
-  String _name;
-  String _reading;
-  List<String> _telList;
-  List<String> _telAvList;
-  List<String> _emailList;
-  String _memo;
-  String _birthday;
-  List<MeCardAddress> _addressList;
-  List<String> _urlList;
-  String _nickname;
+  final String _name;
+  final String _reading;
+  final List<String> _telList;
+  final List<String> _telAvList;
+  final List<String> _emailList;
+  final String _memo;
+  final String _birthday;
+  final List<MeCardAddress> _addressList;
+  final List<String> _urlList;
+  final String _nickname;
 
   MeCardContactCard._(
       this._name, // nullable
@@ -331,7 +331,7 @@ class MeCardContactCard extends ContactCard
   String get nickname => _nickname;
 
   /// The full name, or `null` if no name is specified.
-  String name({bool familyNameFirst: true}) {
+  String name({bool familyNameFirst = true}) {
     if (_name == null) {
       return null;
     }
@@ -355,7 +355,7 @@ class MeCardContactCard extends ContactCard
   }
 
   /// The full reading, or `null` if no reading is specified.
-  String reading({bool familyNameFirst: true}) {
+  String reading({bool familyNameFirst = true}) {
     if (_reading == null) {
       return null;
     }
@@ -380,7 +380,7 @@ class MeCardContactCard extends ContactCard
 
   String serialize() {
     String formTag(String tag, String content) => '$tag:$content;';
-    List<String> components = [];
+    var components = <String>[];
     if (_name != null) {
       components.add(formTag(_nameTag, _name));
     }

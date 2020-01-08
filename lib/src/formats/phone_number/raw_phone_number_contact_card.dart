@@ -26,7 +26,7 @@ class RawPhoneNumberContactCard extends SinglePhoneNumberContactCard
     }
   }
 
-  String _value;
+  final String _value;
 
   String get phoneNumber => _value;
 
