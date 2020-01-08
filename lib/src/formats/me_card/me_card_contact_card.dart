@@ -119,6 +119,8 @@ class MeCardContactCard extends ContactCard
   static final _meCardRegex = RegExp('^$_meCardTag:(.|[\\n\\r])*;\$');
   static final _birthdayRegex = RegExp(r'^[0-9]{8}$');
 
+  /// Returns an instance of [MeCardContactCard] if the given `String`
+  /// contains a MeCard; otherwise returns `null`.
   static MeCardContactCard deserialize(String serializedContactCard) {
     if (!_meCardRegex.hasMatch(serializedContactCard)) {
       return null;
