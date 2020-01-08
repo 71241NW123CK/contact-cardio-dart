@@ -47,15 +47,20 @@ class VCard3_0 extends VCard {
     // vCard 3.0 must have at least one VERSION line with value '3.0', and may
     // not contain any VERSION lines with a value other than '3.0'.
     bool hasVersion = false;
-    final versionPropertyKey = VCardEnumUtilities.stringForVCardIanaPropertyKey(VCardIanaPropertyKey.version);
-    final v3_0Key = VCardEnumUtilities.stringForVCardVersion(VCardVersion.v3_0);
+    final versionPropertyKey =
+        VCardEnumUtilities
+            .stringForVCardIanaPropertyKey(VCardIanaPropertyKey.version);
+    final v3_0Key =
+        VCardEnumUtilities.stringForVCardVersion(VCardVersion.v3_0);
     final versionLine = '${versionPropertyKey}:${v3_0Key}';
     for (var contentLine in contentLines) {
       if (contentLine == versionLine) {
         hasVersion = true;
       } else {
         final components = contentLine.split(':');
-        if (components == 2 && components.first == versionPropertyKey && components[1] != v3_0Key) {
+        if (components == 2
+            && components.first == versionPropertyKey
+            && components[1] != v3_0Key) {
           return null;
         }
       }
@@ -104,7 +109,8 @@ class VCard3_0 extends VCard {
         propertyKeyAndParamsString = groupAndPropertyKey;
       } else {
         group = groupAndPropertyKey.substring(0, periodIndex);
-        propertyKeyAndParamsString = groupAndPropertyKey.substring(periodIndex + 1);
+        propertyKeyAndParamsString =
+            groupAndPropertyKey.substring(periodIndex + 1);
       }
       if (propertyKeyAndParamsString.isEmpty) {
         continue;
@@ -116,8 +122,14 @@ class VCard3_0 extends VCard {
       final propertyKey =
           VCardEnumUtilities.vCardIanaPropertyKeyForString(propertyKeyString);
       if (propertyKey == null) {
-        if (propertyKeyString.length > 2 && propertyKeyString.substring(0, 2).toUpperCase() == 'X-') {
-          final extendedLabeledValue = _buildExtendedLabeledValue(group, propertyKeyAndParams, valueString);
+        if (propertyKeyString.length > 2
+            && propertyKeyString.substring(0, 2).toUpperCase() == 'X-') {
+          final extendedLabeledValue =
+              _buildExtendedLabeledValue(
+                  group,
+                  propertyKeyAndParams,
+                  valueString
+              );
           if (extendedLabeledValue != null) {
             extendedLabeledValueList.add(extendedLabeledValue);
           }
@@ -126,7 +138,8 @@ class VCard3_0 extends VCard {
       }
       switch (propertyKey) {
         case VCardIanaPropertyKey.adr:
-          final labeledAddress = _buildAddress(group, propertyKeyAndParams, valueString);
+          final labeledAddress =
+              _buildAddress(group, propertyKeyAndParams, valueString);
           if (labeledAddress != null) {
             labeledAddressList.add(labeledAddress);
           }
@@ -135,25 +148,33 @@ class VCard3_0 extends VCard {
           birthday = valueString; // TODO: validation
           break;
         case VCardIanaPropertyKey.categories:
-          final labeledCategories = _buildCategories(group, propertyKeyAndParams, valueString);
+          final labeledCategories =
+              _buildCategories(group, propertyKeyAndParams, valueString);
           if (labeledCategories != null) {
             labeledCategoriesList.add(labeledCategories);
           }
           break;
         case VCardIanaPropertyKey.email:
-          final labeledEmailAddress = _buildEmailAddress(group, propertyKeyAndParams, valueString);
+          final labeledEmailAddress =
+              _buildEmailAddress(group, propertyKeyAndParams, valueString);
           if (labeledEmailAddress != null) {
             labeledEmailAddressList.add(labeledEmailAddress);
           }
           break;
         case VCardIanaPropertyKey.fn:
-          final labeledFormattedName = _buildFormattedName(group, propertyKeyAndParams, valueString);
+          final labeledFormattedName =
+              _buildFormattedName(group, propertyKeyAndParams, valueString);
           if (labeledFormattedName != null) {
             labeledFormattedNameList.add(labeledFormattedName);
           }
           break;
         case VCardIanaPropertyKey.geo:
-          final labeledGeographicLocation = _buildGeographicLocation(group, propertyKeyAndParams, valueString);
+          final labeledGeographicLocation =
+              _buildGeographicLocation(
+                  group,
+                  propertyKeyAndParams,
+                  valueString
+              );
           if (labeledGeographicLocation != null) {
             labeledGeographicLocationList.add(labeledGeographicLocation);
           }
@@ -165,13 +186,15 @@ class VCard3_0 extends VCard {
           // TODO: Handle this case.
           break;
         case VCardIanaPropertyKey.label:
-          final labeledLabel = _buildLabel(group, propertyKeyAndParams, valueString);
+          final labeledLabel =
+              _buildLabel(group, propertyKeyAndParams, valueString);
           if (labeledLabel != null) {
             labeledLabelList.add(labeledLabel);
           }
           break;
         case VCardIanaPropertyKey.logo:
-          final labeledLogo = _buildPhotoOrLogo(group, propertyKeyAndParams, valueString);
+          final labeledLogo =
+              _buildPhotoOrLogo(group, propertyKeyAndParams, valueString);
           if (labeledLogo != null) {
             labeledLogoList.add(labeledLogo);
           }
@@ -181,7 +204,8 @@ class VCard3_0 extends VCard {
           // TODO: Handle this case.
           break;
         case VCardIanaPropertyKey.n:
-          final labeledName = _buildName(group, propertyKeyAndParams, valueString);
+          final labeledName =
+              _buildName(group, propertyKeyAndParams, valueString);
           if (labeledName != null) {
             labeledNameList.add(labeledName);
           }
@@ -190,25 +214,29 @@ class VCard3_0 extends VCard {
           // TODO: Handle this case.
           break;
         case VCardIanaPropertyKey.nickname:
-          final labeledNickname = _buildNickname(group, propertyKeyAndParams, valueString);
+          final labeledNickname =
+              _buildNickname(group, propertyKeyAndParams, valueString);
           if (labeledNickname != null) {
             labeledNicknameList.add(labeledNickname);
           }
           break;
         case VCardIanaPropertyKey.note:
-          final labeledNote = _buildNote(group, propertyKeyAndParams, valueString);
+          final labeledNote =
+              _buildNote(group, propertyKeyAndParams, valueString);
           if (labeledNote != null) {
             labeledNoteList.add(labeledNote);
           }
           break;
         case VCardIanaPropertyKey.org:
-          final labeledOrganization = _buildOrganization(group, propertyKeyAndParams, valueString);
+          final labeledOrganization =
+              _buildOrganization(group, propertyKeyAndParams, valueString);
           if (labeledOrganization != null) {
             labeledOrganizationList.add(labeledOrganization);
           }
           break;
         case VCardIanaPropertyKey.photo:
-          final labeledPhoto = _buildPhotoOrLogo(group, propertyKeyAndParams, valueString);
+          final labeledPhoto =
+              _buildPhotoOrLogo(group, propertyKeyAndParams, valueString);
           if (labeledPhoto != null) {
             labeledPhotoList.add(labeledPhoto);
           }
@@ -222,19 +250,22 @@ class VCard3_0 extends VCard {
           }
           break;
         case VCardIanaPropertyKey.rev:
-          final thisLabeledRevisionTime = _buildRevisionTime(group, propertyKeyAndParams, valueString);
+          final thisLabeledRevisionTime =
+              _buildRevisionTime(group, propertyKeyAndParams, valueString);
           if (thisLabeledRevisionTime != null) {
             labeledRevisionTime = thisLabeledRevisionTime;
           }
           break;
         case VCardIanaPropertyKey.role:
-          final labeledRole = _buildRole(group, propertyKeyAndParams, valueString);
+          final labeledRole =
+              _buildRole(group, propertyKeyAndParams, valueString);
           if (labeledRole != null) {
             labeledRoleList.add(labeledRole);
           }
           break;
         case VCardIanaPropertyKey.sortString:
-          final labeledSortString = _buildSortString(group, propertyKeyAndParams, valueString);
+          final labeledSortString =
+              _buildSortString(group, propertyKeyAndParams, valueString);
           if (labeledSortString != null) {
             labeledSortStringList.add(labeledSortString);
           }
@@ -246,20 +277,23 @@ class VCard3_0 extends VCard {
           // TODO: Handle this case.
           break;
         case VCardIanaPropertyKey.tel:
-          final labeledPhoneNumber = _buildPhoneNumber(group, propertyKeyAndParams, valueString);
+          final labeledPhoneNumber =
+              _buildPhoneNumber(group, propertyKeyAndParams, valueString);
           if (labeledPhoneNumber != null) {
             labeledPhoneNumberList.add(labeledPhoneNumber);
           }
           break;
         case VCardIanaPropertyKey.title:
-          final labeledTitle = _buildTitle(group, propertyKeyAndParams, valueString);
+          final labeledTitle =
+              _buildTitle(group, propertyKeyAndParams, valueString);
           if (labeledTitle != null) {
             labeledTitleList.add(labeledTitle);
           }
           break;
         case VCardIanaPropertyKey.tz:
           // TODO: Handle this case.
-          final labeledTimeZone = _buildTimeZone(group, propertyKeyAndParams, valueString);
+          final labeledTimeZone =
+              _buildTimeZone(group, propertyKeyAndParams, valueString);
           if (labeledTimeZone != null) {
             labeledTimeZoneList.add(labeledTimeZone);
           }
@@ -384,13 +418,21 @@ class VCard3_0 extends VCard {
   }
 
   // precondition: `propertyKeyAndParams` is `['CATEGORIES', ...]` and `valueString` is nonnull and nonempty.
-  static IVCardLabeledValue<List<String>> _buildCategories(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<List<String>> _buildCategories(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramList = _buildParamList(propertyKeyAndParams.sublist(1));
     final values = valueString.split(',');
     return VCardLabeledValue.vCardLabeledValue(group, paramList, values);
   }
   
-  static IVCardLabeledValue<String> _buildEmailAddress(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildEmailAddress(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     const Set<VCardIanaParamValue> allowedTypeValues = { // TODO: allow x- values
       VCardIanaParamValue.work,
       VCardIanaParamValue.internet,
@@ -434,24 +476,37 @@ class VCard3_0 extends VCard {
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardLabeledValue<String> _buildFormattedName(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildFormattedName(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramList = _buildParamList(propertyKeyAndParams.sublist(1));
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardLabeledValue<VCardLatLng> _buildGeographicLocation(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<VCardLatLng> _buildGeographicLocation(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final latLngComponents = valueString.split(';');
     if (latLngComponents.length < 2) {
       return null;
     }
-    final latLng = VCardLatLng.vCardLatLng(latLngComponents[0], latLngComponents[1]);
+    final latLng =
+        VCardLatLng.vCardLatLng(latLngComponents[0], latLngComponents[1]);
     if (latLng == null) {
       return null;
     }
     return VCardLabeledValue.vCardLabeledValue(group, [], latLng);
   }
 
-  static IVCardLabeledValue<String> _buildLabel(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildLabel(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     const Set<VCardIanaParamValue> allowedTypeValues = {
       VCardIanaParamValue.intl,
       VCardIanaParamValue.dom,
@@ -498,7 +553,11 @@ class VCard3_0 extends VCard {
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardLabeledValue<VCardName> _buildName(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<VCardName> _buildName(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramList = _buildParamList(propertyKeyAndParams.sublist(1));
     final nameComponents = valueString.split(';');
     final familyNames = nameComponents.first.split(',');
@@ -520,25 +579,45 @@ class VCard3_0 extends VCard {
     return VCardLabeledValue.vCardLabeledValue(group, paramList, name);
   }
 
-  static IVCardLabeledValue<List<String>> _buildNickname(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<List<String>> _buildNickname(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramList = _buildParamList(propertyKeyAndParams.sublist(1));
     final nicknameList = valueString.split(',');
-    return VCardLabeledValue.vCardLabeledValue(group, paramList, nicknameList);
+    return VCardLabeledValue
+        .vCardLabeledValue(group, paramList, nicknameList);
   }
 
-  static IVCardLabeledValue<String> _buildNote(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildNote(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramList = _buildParamList(propertyKeyAndParams.sublist(1));
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardLabeledValue<IVCardOrganization> _buildOrganization(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<IVCardOrganization> _buildOrganization(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramList = _buildParamList(propertyKeyAndParams.sublist(1));
     final components = valueString.split(';');
-    final organization = VCardOrganization.vCardOrganization(components.first, components.sublist(1));
-    return VCardLabeledValue.vCardLabeledValue(group, paramList, organization);
+    final organization =
+        VCardOrganization
+            .vCardOrganization(components.first, components.sublist(1));
+    return VCardLabeledValue
+        .vCardLabeledValue(group, paramList, organization);
   }
 
-  static IVCardLabeledValue<String> _buildRevisionTime(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildRevisionTime(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     const Set<VCardIanaParamValue> allowedValueValues = {
       VCardIanaParamValue.date,
       VCardIanaParamValue.dateTime,
@@ -579,17 +658,29 @@ class VCard3_0 extends VCard {
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardLabeledValue<String> _buildRole(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildRole(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramList = _buildParamList(propertyKeyAndParams.sublist(1));
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardLabeledValue<String> _buildSortString(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildSortString(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramList = _buildParamList(propertyKeyAndParams.sublist(1));
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardLabeledValue<String> _buildPhoneNumber(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildPhoneNumber(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     const Set<VCardIanaParamValue> allowedTypeValues = { // TODO: allow x- values
       VCardIanaParamValue.home,
       VCardIanaParamValue.work,
@@ -646,12 +737,20 @@ class VCard3_0 extends VCard {
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardLabeledValue<String> _buildTitle(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildTitle(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramList = _buildParamList(propertyKeyAndParams.sublist(1));
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardLabeledValue<String> _buildTimeZone(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildTimeZone(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramComponents = propertyKeyAndParams.sublist(1);
     List<AbstractVCardParam> paramList = [];
     for (var paramComponent in paramComponents) {
@@ -660,12 +759,14 @@ class VCard3_0 extends VCard {
         continue;
       }
       final paramNameString = paramComponentParts.first;
-      final paramName = VCardEnumUtilities.vCardIanaParamNameForString(paramNameString);
+      final paramName =
+          VCardEnumUtilities.vCardIanaParamNameForString(paramNameString);
       if (paramName == null || paramName != VCardIanaParamName.value) {
         continue;
       }
       final paramValueString = paramComponentParts[1];
-      final paramValue = VCardEnumUtilities.vCardIanaParamValueForString(paramValueString);
+      final paramValue =
+          VCardEnumUtilities.vCardIanaParamValueForString(paramValueString);
       if (paramValue == null || paramValue != VCardIanaParamValue.text) {
         continue;
       }
@@ -683,7 +784,11 @@ class VCard3_0 extends VCard {
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardLabeledValue<String> _buildPhotoOrLogo(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardLabeledValue<String> _buildPhotoOrLogo(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramComponents = propertyKeyAndParams.sublist(1);
     List<AbstractVCardParam> paramList = [];
     for (var paramComponent in paramComponents) {
@@ -736,7 +841,11 @@ class VCard3_0 extends VCard {
     return VCardLabeledValue.vCardLabeledValue(group, paramList, valueString);
   }
 
-  static IVCardExtendedLabeledValue _buildExtendedLabeledValue(String group, List<String> propertyKeyAndParams, String valueString) {
+  static IVCardExtendedLabeledValue _buildExtendedLabeledValue(
+      String group,
+      List<String> propertyKeyAndParams,
+      String valueString
+      ) {
     final paramList = _buildParamList(propertyKeyAndParams.sublist(1));
     return VCardExtendedLabeledValue.vCardExtendedLabeledValue(
         group,
@@ -1165,26 +1274,37 @@ class VCard3_0 extends VCard {
   List<IVCardLabeledValue<String>> _labeledSortStringList;
 
   VCardVersion get vCardVersion => VCardVersion.v3_0;
-  List<IVCardLabeledValue<String>> get labeledFormattedNameList => _labeledFormattedNameList;
-  List<IVCardLabeledValue<IVCardName>> get labeledNameList => _labeledNameList;
-  List<IVCardLabeledValue<List<String>>> get labeledNicknameList => _labeledNicknameList;
+  List<IVCardLabeledValue<String>> get labeledFormattedNameList =>
+      _labeledFormattedNameList;
+  List<IVCardLabeledValue<IVCardName>> get labeledNameList =>
+      _labeledNameList;
+  List<IVCardLabeledValue<List<String>>> get labeledNicknameList =>
+      _labeledNicknameList;
   List<IVCardLabeledValue<String>> get labeledPhotoList => _labeledPhotoList;
   String get birthday => _birthday;
-  List<IVCardLabeledValue<IVCardAddress>> get labeledAddressList => _labeledAddressList;
-  List<IVCardLabeledValue<String>> get labeledPhoneNumberList => _labeledPhoneNumberList;
-  List<IVCardLabeledValue<String>> get labeledEmailAddressList => _labeledEmailAddressList;
-  List<IVCardLabeledValue<String>> get labeledTimeZoneList => _labeledTimeZoneList;
-  List<IVCardLabeledValue<IVCardLatLng>> get labeledGeographicLocationList => _labeledGeographicLocationList;
+  List<IVCardLabeledValue<IVCardAddress>> get labeledAddressList =>
+      _labeledAddressList;
+  List<IVCardLabeledValue<String>> get labeledPhoneNumberList =>
+      _labeledPhoneNumberList;
+  List<IVCardLabeledValue<String>> get labeledEmailAddressList =>
+      _labeledEmailAddressList;
+  List<IVCardLabeledValue<String>> get labeledTimeZoneList =>
+      _labeledTimeZoneList;
+  List<IVCardLabeledValue<IVCardLatLng>> get labeledGeographicLocationList =>
+      _labeledGeographicLocationList;
   List<IVCardLabeledValue<String>> get labeledTitleList => _labeledTitleList;
   List<IVCardLabeledValue<String>> get labeledRoleList => _labeledRoleList;
   List<IVCardLabeledValue<String>> get labeledLogoList => _labeledLogoList;
-  List<IVCardLabeledValue<IVCardOrganization>> get labeledOrganizationList => _labeledOrganizationList;
-  List<IVCardLabeledValue<List<String>>> get labeledCategoriesList => _labeledCategoriesList;
+  List<IVCardLabeledValue<IVCardOrganization>> get labeledOrganizationList =>
+      _labeledOrganizationList;
+  List<IVCardLabeledValue<List<String>>> get labeledCategoriesList =>
+      _labeledCategoriesList;
   List<IVCardLabeledValue<String>> get labeledNoteList => _labeledNoteList;
   String get prodId => _prodId;
   IVCardLabeledValue<String> get labeledRevisionTime => _labeledRevisionTime;
   List<String> get uriList => _uriList;
-  List<IVCardExtendedLabeledValue> get extendedLabeledValueList => _extendedLabeledValueList;
+  List<IVCardExtendedLabeledValue> get extendedLabeledValueList =>
+      _extendedLabeledValueList;
 
   /// A list of formatted shipping/ mailing labels and their groups and
   /// parameters.  These are represented in the vCard as `LABEL` properties.
