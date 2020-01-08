@@ -1,4 +1,4 @@
-/// An enumeration of the vCard version in use.
+/// An enumeration of the vCard versions in use.
 enum VCardVersion {
   v2_1,
   v3_0,
