@@ -1,5 +1,5 @@
 name: contact_cardio
-version: 0.0.0
+version: 0.0.1
 author: Ryan Hiroaki Tsukamoto<backward6@gmail.com>
 description: A package for reading and writing various contact information formats such as vCard and MeCard.
 homepage: https://github.com/71241NW123CK/contact-cardio-dart
