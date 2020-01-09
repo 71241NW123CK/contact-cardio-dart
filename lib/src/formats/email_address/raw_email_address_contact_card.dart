@@ -18,9 +18,11 @@ class RawEmailAddressContactCard extends SingleEmailAddressContactCard
 
   final String _value;
 
+  @override
   String get emailAddress => _value;
 
   RawEmailAddressContactCard._(this._value);
 
+  @override
   String serialize() => _value;
 }

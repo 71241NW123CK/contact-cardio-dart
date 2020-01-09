@@ -57,15 +57,18 @@ class VCardContactCard extends ContactCard
 
   VCardContactCard._(this._vCardList);
 
+  @override
   List<String> get emailAddressList =>
       _vCardList.expand((vc) => vc.emailAddressList).toList();
 
+  @override
   List<String> get phoneNumberList =>
       _vCardList.expand((vc) => vc.phoneNumberList).toList();
 
   /// A list of [VCard]s contained in the vCard entity.
   List<VCard> get vCardList => List.unmodifiable(_vCardList);
 
+  @override
   String serialize() {
     return _vCardList.map((vc) => vc.serialize()).join('');
   }

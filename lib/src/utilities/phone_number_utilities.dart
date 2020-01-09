@@ -6,13 +6,13 @@
 /// subclass representing such URIs.
 class PhoneNumberUtilities {
   /// I am bad at regular expressions feelsbadman
-  static var _rawPhoneNumberPattern =
-      r"\+?([0-9]{1,20}|\([0-9]{1,20}\))([\+\*\.\-# ]?([0-9]{1,20}|\([0-9]{1,20}\))){0,4}";
-  static var _oneRawPhoneNumberPattern = "^$_rawPhoneNumberPattern\$";
-  static var _uriPhoneNumberPattern = "tel:$_rawPhoneNumberPattern";
-  static var _oneUriPhoneNumberPattern = "^$_uriPhoneNumberPattern\$";
-  static var _oneRawPhoneNumberRegExp = RegExp(_oneRawPhoneNumberPattern);
-  static var _oneUriPhoneNumberRegExp = RegExp(_oneUriPhoneNumberPattern);
+  static final _rawPhoneNumberPattern =
+      r'\+?([0-9]{1,20}|\([0-9]{1,20}\))([\+\*\.\-# ]?([0-9]{1,20}|\([0-9]{1,20}\))){0,4}';
+  static final _oneRawPhoneNumberPattern = '^$_rawPhoneNumberPattern\$';
+  static final _uriPhoneNumberPattern = 'tel:$_rawPhoneNumberPattern';
+  static final _oneUriPhoneNumberPattern = '^$_uriPhoneNumberPattern\$';
+  static final _oneRawPhoneNumberRegExp = RegExp(_oneRawPhoneNumberPattern);
+  static final _oneUriPhoneNumberRegExp = RegExp(_oneUriPhoneNumberPattern);
 
   static bool isOneRawPhoneNumber(String string) =>
       _oneRawPhoneNumberRegExp.hasMatch(string);

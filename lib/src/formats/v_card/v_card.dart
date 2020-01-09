@@ -191,9 +191,12 @@ abstract class VCard
   /// only storing and regurgitating it unchanged.
   static const defaultProdId = '-//Tree Squared Technologies LLC//Contact Cardio Dart v0.0.0//EN';
 
+  @override
   List<String> get emailAddressList =>
       List.unmodifiable(labeledEmailAddressList.map((e) => e.value).toList());
 
+
+  @override
   List<String> get phoneNumberList =>
       List.unmodifiable(labeledPhoneNumberList.map((p) => p.value).toList());
 

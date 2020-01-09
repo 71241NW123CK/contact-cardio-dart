@@ -18,6 +18,7 @@ class VCardIanaBoundedParamValue extends IVCardIanaBoundedParamValue {
 
   VCardIanaBoundedParamValue._(this._value);
 
+  @override
   VCardIanaParamValue get value => _value;
 }
 
@@ -31,6 +32,7 @@ class VCardIanaUnboundedParamValue extends IVCardIanaUnboundedParamValue {
 
   VCardIanaUnboundedParamValue._(this._value);
 
+  @override
   String get value => _value;
 }
 
@@ -52,7 +54,10 @@ class VCardIanaParam extends IVCardIanaParam {
 
   VCardIanaParam._(this._paramName, this._paramValueList);
 
+  @override
   VCardIanaParamName get paramName => _paramName;
+
+  @override
   List<AbstractVCardIanaParamValue> get paramValueList =>
       List.unmodifiable(_paramValueList);
 }
@@ -75,7 +80,10 @@ class VCardXParam extends IVCardXParam {
 
   VCardXParam._(this._paramName, this._paramValueList);
 
+  @override
   String get paramName => _paramName;
+
+  @override
   List<String> get paramValueList => List.unmodifiable(_paramValueList);
 }
 
@@ -101,9 +109,14 @@ class VCardLabeledValue<T> extends IVCardLabeledValue<T> {
       this._value
       );
 
+  @override
   String get group => _group;
+
+  @override
   List<AbstractVCardParam> get vCardParamList =>
       List.unmodifiable(_vCardParamList);
+
+  @override
   T get value => _value;
 }
 
@@ -137,10 +150,16 @@ class VCardExtendedLabeledValue extends IVCardExtendedLabeledValue {
       this._value
       );
 
+  @override
   String get group => _group;
+
+  @override
   String get propertyKey => _propertyKey;
-  List<IVCardXParam> get vCardParamList =>
-      List.unmodifiable(_vCardParamList);
+
+  @override
+  List<IVCardXParam> get vCardParamList => List.unmodifiable(_vCardParamList);
+
+  @override
   String get value => _value;
 }
 
@@ -186,12 +205,25 @@ class VCardAddress extends IVCardAddress {
       this._countryName
       );
 
+  @override
   String get poBox => _poBox;
+
+  @override
   String get extendedAddress => _extendedAddress;
+
+  @override
   String get street => _street;
+
+  @override
   String get locality => _locality;
+
+  @override
   String get region => _region;
+
+  @override
   String get postalCode => _postalCode;
+
+  @override
   String get countryName => _countryName;
 }
 
@@ -214,7 +246,10 @@ class VCardLatLng extends IVCardLatLng {
 
   VCardLatLng._(this._latitude, this._longitude);
 
+  @override
   String get latitude => _latitude;
+
+  @override
   String get longitude => _longitude;
 }
 
@@ -254,14 +289,23 @@ class VCardName extends IVCardName {
       this._suffixes
       );
 
+  @override
   List<String> get familyNames =>
       _familyNames != null ? List.unmodifiable(_familyNames) : null;
+
+  @override
   List<String> get givenNames =>
       _givenNames != null ? List.unmodifiable(_givenNames) : null;
+
+  @override
   List<String> get middleNames =>
       _middleNames != null ? List.unmodifiable(_middleNames) : null;
+
+  @override
   List<String> get prefixes =>
       _prefixes != null ? List.unmodifiable(_prefixes) : null;
+
+  @override
   List<String> get suffixes =>
       _suffixes != null ? List.unmodifiable(_suffixes) : null;
 }
@@ -282,6 +326,10 @@ class VCardOrganization extends IVCardOrganization {
 
   VCardOrganization._(this._name, this._organizationUnits);
 
+
+  @override
   String get name => _name;
+
+  @override
   List<String> get organizationUnits => List.unmodifiable(_organizationUnits);
 }

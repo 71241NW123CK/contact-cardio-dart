@@ -36,9 +36,11 @@ class UriPhoneNumberContactCard extends SinglePhoneNumberContactCard
 
   final String _phoneNumber;
 
+  @override
   String get phoneNumber => _phoneNumber;
 
   UriPhoneNumberContactCard._(this._phoneNumber);
 
+  @override
   String serialize() => 'tel:$_phoneNumber';
 }

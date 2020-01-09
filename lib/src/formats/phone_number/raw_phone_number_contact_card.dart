@@ -28,9 +28,11 @@ class RawPhoneNumberContactCard extends SinglePhoneNumberContactCard
 
   final String _value;
 
+  @override
   String get phoneNumber => _value;
 
   RawPhoneNumberContactCard._(this._value);
 
+  @override
   String serialize() => _value;
 }

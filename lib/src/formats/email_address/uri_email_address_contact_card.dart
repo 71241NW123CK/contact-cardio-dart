@@ -38,6 +38,7 @@ class UriEmailAddressContactCard extends EmailAddressContactCard
 
   final List<String> _recipientList;
 
+  @override
   List<String> get emailAddressList => _recipientList;
 
   UriEmailAddressContactCard._(this._recipientList);
@@ -47,5 +48,6 @@ class UriEmailAddressContactCard extends EmailAddressContactCard
   /// [RFC 6068](https://tools.ietf.org/html/rfc6068), be sure to change the
   /// implementation of this method to include currently unsupported
   /// `hfield`s, should they exist.
+  @override
   String serialize() => 'mailto:${_recipientList.join(",")}';
 }
