@@ -344,7 +344,7 @@ class VCard3_0 extends VCard {
       List<String> propertyKeyAndParams,
       String valueString
       ) {
-    const Set<VCardIanaParamValue> allowedTypeValues = {
+    const allowedTypeValues = <VCardIanaParamValue>{
       VCardIanaParamValue.intl,
       VCardIanaParamValue.dom,
       VCardIanaParamValue.postal,
@@ -402,8 +402,8 @@ class VCard3_0 extends VCard {
       postalCode != null && postalCode.isEmpty ? null : postalCode,
       countryName != null && countryName.isEmpty ? null : countryName
     );
-    final List<VCardIanaParam> paramList = typeValues.isNotEmpty
-        ? [
+    final paramList = typeValues.isNotEmpty
+        ? <VCardIanaParam>[
             VCardIanaParam.vCardIanaParam(
                 VCardIanaParamName.type,
                 typeValues
@@ -433,7 +433,7 @@ class VCard3_0 extends VCard {
       List<String> propertyKeyAndParams,
       String valueString
       ) {
-    const Set<VCardIanaParamValue> allowedTypeValues = { // TODO: allow x- values
+    const allowedTypeValues = <VCardIanaParamValue>{ // TODO: allow x- values
       VCardIanaParamValue.work,
       VCardIanaParamValue.internet,
       VCardIanaParamValue.pref,
@@ -461,8 +461,8 @@ class VCard3_0 extends VCard {
         }
       }
     }
-    final List<VCardIanaParam> paramList = typeValues.isNotEmpty
-        ? [
+    final paramList = typeValues.isNotEmpty
+        ? <VCardIanaParam>[
             VCardIanaParam.vCardIanaParam(
                 VCardIanaParamName.type,
                 typeValues
@@ -507,7 +507,7 @@ class VCard3_0 extends VCard {
       List<String> propertyKeyAndParams,
       String valueString
       ) {
-    const Set<VCardIanaParamValue> allowedTypeValues = {
+    const allowedTypeValues = <VCardIanaParamValue>{
       VCardIanaParamValue.intl,
       VCardIanaParamValue.dom,
       VCardIanaParamValue.postal,
@@ -538,8 +538,8 @@ class VCard3_0 extends VCard {
         }
       }
     }
-    final List<VCardIanaParam> paramList = typeValues.isNotEmpty
-        ? [
+    final paramList = typeValues.isNotEmpty
+        ? <VCardIanaParam>[
       VCardIanaParam.vCardIanaParam(
           VCardIanaParamName.type,
           typeValues
@@ -618,7 +618,7 @@ class VCard3_0 extends VCard {
       List<String> propertyKeyAndParams,
       String valueString
       ) {
-    const Set<VCardIanaParamValue> allowedValueValues = {
+    const allowedValueValues = <VCardIanaParamValue>{
       VCardIanaParamValue.date,
       VCardIanaParamValue.dateTime,
     };
@@ -644,8 +644,8 @@ class VCard3_0 extends VCard {
         }
       }
     }
-    final List<VCardIanaParam> paramList = valueValue != null
-        ? [
+    final paramList = valueValue != null
+        ? <VCardIanaParam>[
             VCardIanaParam.vCardIanaParam(
                 VCardIanaParamName.value,
                 [
@@ -681,7 +681,7 @@ class VCard3_0 extends VCard {
       List<String> propertyKeyAndParams,
       String valueString
       ) {
-    const Set<VCardIanaParamValue> allowedTypeValues = { // TODO: allow x- values
+    const allowedTypeValues = <VCardIanaParamValue>{ // TODO: allow x- values
       VCardIanaParamValue.home,
       VCardIanaParamValue.work,
       VCardIanaParamValue.pref,
@@ -722,8 +722,8 @@ class VCard3_0 extends VCard {
         }
       }
     }
-    final List<VCardIanaParam> paramList = typeValues.isNotEmpty
-        ? [
+    final paramList = typeValues.isNotEmpty
+        ? <VCardIanaParam>[
             VCardIanaParam.vCardIanaParam(
                 VCardIanaParamName.type,
                 typeValues
@@ -1224,6 +1224,30 @@ class VCard3_0 extends VCard {
     }
   }
 
+  final List<IVCardLabeledValue<String>> _labeledFormattedNameList;
+  final List<IVCardLabeledValue<IVCardName>> _labeledNameList;
+  final List<IVCardLabeledValue<List<String>>> _labeledNicknameList;
+  final List<IVCardLabeledValue<String>> _labeledPhotoList;
+  final String _birthday;
+  final List<IVCardLabeledValue<IVCardAddress>> _labeledAddressList;
+  final List<IVCardLabeledValue<String>> _labeledPhoneNumberList;
+  final List<IVCardLabeledValue<String>> _labeledEmailAddressList;
+  final List<IVCardLabeledValue<String>> _labeledTimeZoneList;
+  final List<IVCardLabeledValue<IVCardLatLng>> _labeledGeographicLocationList;
+  final List<IVCardLabeledValue<String>> _labeledTitleList;
+  final List<IVCardLabeledValue<String>> _labeledRoleList;
+  final List<IVCardLabeledValue<String>> _labeledLogoList;
+  final List<IVCardLabeledValue<IVCardOrganization>> _labeledOrganizationList;
+  final List<IVCardLabeledValue<List<String>>> _labeledCategoriesList;
+  final List<IVCardLabeledValue<String>> _labeledNoteList;
+  final String _prodId;
+  final IVCardLabeledValue<String> _labeledRevisionTime;
+  final List<String> _uriList;
+  final List<IVCardExtendedLabeledValue> _extendedLabeledValueList;
+
+  final List<IVCardLabeledValue<String>> _labeledLabelList;
+  final List<IVCardLabeledValue<String>> _labeledSortStringList;
+
   VCard3_0._(
       this._labeledFormattedNameList,
       this._labeledNameList,
@@ -1247,62 +1271,79 @@ class VCard3_0 extends VCard {
       this._extendedLabeledValueList,
       this._labeledLabelList,
       this._labeledSortStringList
-  );
+      );
 
-  List<IVCardLabeledValue<String>> _labeledFormattedNameList;
-  List<IVCardLabeledValue<IVCardName>> _labeledNameList;
-  List<IVCardLabeledValue<List<String>>> _labeledNicknameList;
-  List<IVCardLabeledValue<String>> _labeledPhotoList;
-  String _birthday;
-  List<IVCardLabeledValue<IVCardAddress>> _labeledAddressList;
-  List<IVCardLabeledValue<String>> _labeledPhoneNumberList;
-  List<IVCardLabeledValue<String>> _labeledEmailAddressList;
-  List<IVCardLabeledValue<String>> _labeledTimeZoneList;
-  List<IVCardLabeledValue<IVCardLatLng>> _labeledGeographicLocationList;
-  List<IVCardLabeledValue<String>> _labeledTitleList;
-  List<IVCardLabeledValue<String>> _labeledRoleList;
-  List<IVCardLabeledValue<String>> _labeledLogoList;
-  List<IVCardLabeledValue<IVCardOrganization>> _labeledOrganizationList;
-  List<IVCardLabeledValue<List<String>>> _labeledCategoriesList;
-  List<IVCardLabeledValue<String>> _labeledNoteList;
-  String _prodId;
-  IVCardLabeledValue<String> _labeledRevisionTime;
-  List<String> _uriList;
-  List<IVCardExtendedLabeledValue> _extendedLabeledValueList;
-
-  List<IVCardLabeledValue<String>> _labeledLabelList;
-  List<IVCardLabeledValue<String>> _labeledSortStringList;
-
+  @override
   VCardVersion get vCardVersion => VCardVersion.v3_0;
+
+  @override
   List<IVCardLabeledValue<String>> get labeledFormattedNameList =>
       _labeledFormattedNameList;
+
+  @override
   List<IVCardLabeledValue<IVCardName>> get labeledNameList =>
       _labeledNameList;
+
+  @override
   List<IVCardLabeledValue<List<String>>> get labeledNicknameList =>
       _labeledNicknameList;
+
+  @override
   List<IVCardLabeledValue<String>> get labeledPhotoList => _labeledPhotoList;
+
+  @override
   String get birthday => _birthday;
+
+  @override
   List<IVCardLabeledValue<IVCardAddress>> get labeledAddressList =>
       _labeledAddressList;
+
+  @override
   List<IVCardLabeledValue<String>> get labeledPhoneNumberList =>
       _labeledPhoneNumberList;
+
+  @override
   List<IVCardLabeledValue<String>> get labeledEmailAddressList =>
       _labeledEmailAddressList;
+
+  @override
   List<IVCardLabeledValue<String>> get labeledTimeZoneList =>
       _labeledTimeZoneList;
+
+  @override
   List<IVCardLabeledValue<IVCardLatLng>> get labeledGeographicLocationList =>
       _labeledGeographicLocationList;
+
+  @override
   List<IVCardLabeledValue<String>> get labeledTitleList => _labeledTitleList;
+
+  @override
   List<IVCardLabeledValue<String>> get labeledRoleList => _labeledRoleList;
+
+  @override
   List<IVCardLabeledValue<String>> get labeledLogoList => _labeledLogoList;
+
+  @override
   List<IVCardLabeledValue<IVCardOrganization>> get labeledOrganizationList =>
       _labeledOrganizationList;
+
+  @override
   List<IVCardLabeledValue<List<String>>> get labeledCategoriesList =>
       _labeledCategoriesList;
+
+  @override
   List<IVCardLabeledValue<String>> get labeledNoteList => _labeledNoteList;
+
+  @override
   String get prodId => _prodId;
+
+  @override
   IVCardLabeledValue<String> get labeledRevisionTime => _labeledRevisionTime;
+
+  @override
   List<String> get uriList => _uriList;
+
+  @override
   List<IVCardExtendedLabeledValue> get extendedLabeledValueList =>
       _extendedLabeledValueList;
 
@@ -1316,9 +1357,10 @@ class VCard3_0 extends VCard {
   List<IVCardLabeledValue<String>> get labeledSortStringList =>
       _labeledSortStringList;
 
+  @override
   String serialize() {
-    List<String> contentLines =
-        [
+    var contentLines =
+        <String>[
           '${VCardEnumUtilities.stringForVCardIanaPropertyKey(VCardIanaPropertyKey.version)}:${VCardEnumUtilities.stringForVCardVersion(VCardVersion.v3_0)}',
           '${VCardEnumUtilities.stringForVCardIanaPropertyKey(VCardIanaPropertyKey.prodid)}:${VCard.defaultProdId}', // creating a vCard from internal structural representation, potentially reordering properties and/ or correcting non-conforming properties and enforcing consistent capitalization
         ];

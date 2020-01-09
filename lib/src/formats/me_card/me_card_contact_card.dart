@@ -248,7 +248,7 @@ class MeCardContactCard extends ContactCard
       return _name;
     } else {
       final tailComponents = nameComponents.sublist(1);
-      return tailComponents.join(",");
+      return tailComponents.join(',');
     }
   }
 
@@ -281,7 +281,10 @@ class MeCardContactCard extends ContactCard
     }
   }
 
+  @override
   List<String> get emailAddressList => List.unmodifiable(_emailList);
+
+  @override
   List<String> get phoneNumberList => List.unmodifiable(_telList + _telAvList);
 
   /// A list of the non-AV phone numbers.
@@ -378,6 +381,7 @@ class MeCardContactCard extends ContactCard
     }
   }
 
+  @override
   String serialize() {
     String formTag(String tag, String content) => '$tag:$content;';
     var components = <String>[];

@@ -16,6 +16,7 @@ abstract class SinglePhoneNumberContactCard extends PhoneNumberContactCard {
         UriPhoneNumberContactCard.deserialize,
       ])(serializedContactCard);
 
+  @override
   List<String> get phoneNumberList => [phoneNumber];
 
   /// The phone number represented by this instance.

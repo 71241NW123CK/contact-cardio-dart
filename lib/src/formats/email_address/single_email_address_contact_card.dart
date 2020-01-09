@@ -16,6 +16,7 @@ abstract class SingleEmailAddressContactCard extends EmailAddressContactCard {
       String serializedContactCard) =>
       RawEmailAddressContactCard.deserialize(serializedContactCard);
 
+  @override
   List<String> get emailAddressList => [emailAddress];
 
   /// The email address represented by this instance.
